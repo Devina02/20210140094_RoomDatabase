@@ -30,9 +30,11 @@ import com.example.pam8.model.DetailSiswa
 import com.example.pam8.model.EntryViewModel
 import com.example.pam8.model.PenyediaViewModel
 import com.example.pam8.model.UIStateSiswa
+import com.example.pam8.navigasi.DestinasiNavigasi
+import com.example.pam8.navigasi.SiswaTopAppBar
 import kotlinx.coroutines.launch
 
-object DestinasiEntry: DestinasiEntry {
+object DestinasiEntry: DestinasiNavigasi{
     override val route = "item_entry"
     override val titleRes = R.string.entry_siswa
 }
@@ -49,7 +51,7 @@ fun EntrySiswaScreen(
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            SiswaToAppBar(
+            SiswaTopAppBar(
                 title = stringResource(DestinasiEntry.titleRes),
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior
@@ -57,7 +59,7 @@ fun EntrySiswaScreen(
         }) {innerPadding ->
         EntrySiswaBody(
             uiStateSiswa = viewModel.uiStateSiswa,
-            onSiswaValueChange = viewModel::uiStateSiswa,
+            onSiswaValueChange = viewModel::updateUiState,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.saveSiswa()

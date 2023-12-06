@@ -1,6 +1,5 @@
 package com.example.pam8.halaman
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,11 +37,12 @@ import com.example.pam8.data.Siswa
 import com.example.pam8.model.HomeViewModel
 import com.example.pam8.model.PenyediaViewModel
 import com.example.pam8.navigasi.DestinasiNavigasi
+import com.example.pam8.navigasi.SiswaTopAppBar
 
 
-object DestinasiHome : DestinasiNavigasi{
+object DestinasiHome : DestinasiNavigasi {
     override val route = "home"
-    override val titleRest = R.string.app_name
+    override val titleRes = R.string.app_name
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,8 +57,8 @@ fun HomeScreen(
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            SiswaToAppBar(
-                title = stringResource(DestinasiHome.titleRest),
+            SiswaTopAppBar(
+                title = stringResource(DestinasiHome.titleRes),
                 canNavigateBack = false,
                 scrollBehavior =  scrollBehavior
             )
@@ -115,7 +115,7 @@ fun ListSiswa(
     modifier: Modifier=Modifier
 ) {
     LazyColumn(modifier = Modifier){
-        items(items = itemSiswa, key = {it.id}){
+        items(items = ItemSiswa, key = {it.id}){
             person ->
             DataSiswa(
                 siswa = person,
